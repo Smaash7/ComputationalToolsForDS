@@ -1,0 +1,12 @@
+timestamp,step,runtime_s,peak_python_mb,peak_arrow_mb,details
+2026-10-05T14:05:08,csv_to_parquet,83.109,120.7,73.1,chunksize=500000; rows=7079081
+2026-10-05T14:05:10,make_sample,0.992,102.7,1035.6,n=100000; rows=100000
+2026-10-05T14:05:10,load_parquet,0.266,94.7,1035.6,source=flights_2024.parquet; rows=7079081
+2026-10-05T14:08:12,load_parquet,0.516,95.2,1035.6,source=flights_2024.parquet; rows=7079081
+2026-10-05T14:22:38,load_parquet,0.405,94.7,1035.6,source=flights_2024.parquet; rows=7079081
+2026-10-05T14:27:13,load_parquet,0.443,95.2,1035.6,source=flights_2024.parquet; rows=7079081
+2026-10-05T14:29:36,load_parquet,0.266,95.2,1035.6,source=flights_2024.parquet; rows=7079081
+2026-10-05T14:59:20,load_parquet,0.456,94.7,1035.6,source=flights_2024.parquet; rows=7079081
+2026-10-05T15:01:19,load_parquet,0.3,95.2,1035.6,source=flights_2024.parquet; rows=7079081
+2026-10-05T20:19:43,load_parquet,0.928,94.7,1035.6,source=flights_2024.parquet; rows=7079081
+2026-10-05T20:19:52,load_parquet,0.689,94.7,1035.6,source=flights_2024.parquet; rows=7079081

@@ -1,0 +1,4 @@
+setup,columns,memory_mb_for_200000_rows
+"all 35 columns, default dtypes",35,65.0
+"our columns, default dtypes",23,41.6
+"our columns, optimized dtypes",23,12.0

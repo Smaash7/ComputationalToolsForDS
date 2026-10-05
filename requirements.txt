@@ -1,0 +1,6 @@
+pandas>=2.1 version
+pyarrow>=14.0 version
+numpy>=1.26 version
+
+jupyter
+ipykernel
