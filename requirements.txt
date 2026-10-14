@@ -1,6 +1,9 @@
-pandas>=2.1 version
-pyarrow>=14.0 version
-numpy>=1.26 version
+pandas>=2.1
+pyarrow>=14.0
+numpy>=1.26
+matplotlib>=3.8
+scikit-learn>=1.4
+scipy>=1.11
 
 jupyter
 ipykernel

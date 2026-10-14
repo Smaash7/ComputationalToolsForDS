@@ -5,15 +5,26 @@ Flight delays spread through the air network: a late aircraft delays its next fl
 ## Research questions
 Question and Main methods 
 **RQ1** (core) | Can route + airline profiles, built only from schedule/route features, be grouped into meaningful clusters? Do the clusters differ in delay level and delay causes? 
-Methods: K-Means (our own implementation, validated against scikit-learn), MiniBatchKMeans, hierarchical, DBSCAN; Silhouette, Davies–Bouldin; Kruskal–Wallis 
+Methods: K-Means (our own implementation, validated against scikit-learn) and hierarchical clustering; Silhouette, Davies–Bouldin; Kruskal–Wallis 
 
 
 **RQ2** (core) | Does the airport network contain communities with similar delays? Which airports act as bridges? 
 Methods: Louvain and modularity, spectral clustering, betweenness centrality 
 
 
-**RQ3** (extension) Do cluster and community labels help predict a 15+ minute arrival delay, compared with a per-route baseline? 
-Methods: Gradient boosting (LightGBM, outside the course); train Jan–Sep, test Oct–Dec 
+**RQ3** (extension) | Do the outputs of RQ1 (route cluster) and RQ2 (airport community, betweenness) help predict a 15+ minute arrival delay, compared with a per-route baseline? 
+Methods: Explainable Boosting Machine (EBM, outside the course) with the RQ1 and RQ2 outputs as features; rolling monthly evaluation (train on months 1..m, test on month m+1, for m = 6..11); ROC-AUC and PR-AUC reported next to each month's base rate 
+
+## Decisions
+- Route profiles are built on months 1–6 only, with at least 26 flights per route + airline pair (about one per week).
+- The airline is not a clustering feature, but it is a feature in the EBM (RQ3).
+- Time-of-day bins: 5–12h, 12–18h, 18–24h, 0–5h.
+- Delays are compared between clusters and communities with medians.
+- Betweenness uses distance = 1 / number of flights.
+- Flights with an impossible scheduled duration will be removed in the cleaning step.
+- In RQ3, each month's PR-AUC is reported next to its base rate.
+- RQ1 clusters and RQ2 communities are built once on months 1–6 and kept fixed in all folds (labels stay stable). Only the historical delay rates (route and cluster) are recomputed per fold from the months before the test month.
+- Cleaning rule (not implemented yet): a flight is removed if `crs_elapsed_time` is missing or <= 0, if its implied speed (distance / scheduled duration) is above 650 mph, or if its scheduled duration is less than half or more than twice the median scheduled duration of its route (origin, dest).
 
 ## Folder structure
 ```
@@ -22,13 +33,16 @@ ComputationalTools/
 │   ├── raw/           flight_data_2024.csv (Kaggle download)
 │   ├── processed/     flights_2024.parquet (full data, compact)
 │   └── sample/        flights_2024_sample.parquet (100k rows)
-├── notebooks/         01_data_loading.ipynb
+├── notebooks/
+│   ├── 01_data_loading.ipynb
+│   └── 01b_eda.ipynb  exploratory data analysis
 ├── src/
 │   ├── config.py          paths and random seed
 │   ├── profiling.py       runtime and memory measurement
 │   └── data_loading.py    CSV -> Parquet, sample, loader
 ├── results/
 │   ├── tables/        tables used in the report
+│   ├── figures/       figures used in the report
 │   └── logs/          performance_log.csv
 ├── requirements.txt
 └── README.md
