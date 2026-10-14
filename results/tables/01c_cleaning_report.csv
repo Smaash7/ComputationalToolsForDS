@@ -1,0 +1,5 @@
+,flights_flagged,share_pct
+duration missing or <= 0,2,0.00003
+speed > 650 mph,5,0.00007
+duration < 0.5x or > 2x route median,38,0.00054
+total removed (any rule),41,0.00058

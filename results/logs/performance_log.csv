@@ -10,3 +10,5 @@ timestamp,step,runtime_s,peak_python_mb,peak_arrow_mb,details
 2026-10-05T15:01:19,load_parquet,0.3,95.2,1035.6,source=flights_2024.parquet; rows=7079081
 2026-10-05T20:19:43,load_parquet,0.928,94.7,1035.6,source=flights_2024.parquet; rows=7079081
 2026-10-05T20:19:52,load_parquet,0.689,94.7,1035.6,source=flights_2024.parquet; rows=7079081
+2026-10-14T17:48:46,clean_flights,49.526,1317.3,1035.6,rows_in=7079081; rows_out=7079040
+2026-10-14T17:48:46,build_edges,0.538,171.8,1028.8,months=1-6; edges=6545

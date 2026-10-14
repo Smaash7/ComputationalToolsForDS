@@ -24,7 +24,7 @@ Methods: Explainable Boosting Machine (EBM, outside the course) with the RQ1 and
 - Flights with an impossible scheduled duration will be removed in the cleaning step.
 - In RQ3, each month's PR-AUC is reported next to its base rate.
 - RQ1 clusters and RQ2 communities are built once on months 1–6 and kept fixed in all folds (labels stay stable). Only the historical delay rates (route and cluster) are recomputed per fold from the months before the test month.
-- Cleaning rule (not implemented yet): a flight is removed if `crs_elapsed_time` is missing or <= 0, if its implied speed (distance / scheduled duration) is above 650 mph, or if its scheduled duration is less than half or more than twice the median scheduled duration of its route (origin, dest).
+- Cleaning rule (`src/cleaning.py`, removes 41 flights; cancelled and diverted flights are kept, labelled in `status`): a flight is removed if `crs_elapsed_time` is missing or <= 0, if its implied speed (distance / scheduled duration) is above 650 mph, or if its scheduled duration is less than half or more than twice the median scheduled duration of its route (origin, dest).
 
 ## Folder structure
 ```
@@ -35,11 +35,14 @@ ComputationalTools/
 │   └── sample/        flights_2024_sample.parquet (100k rows)
 ├── notebooks/
 │   ├── 01_data_loading.ipynb
-│   └── 01b_eda.ipynb  exploratory data analysis
+│   ├── 01b_eda.ipynb  exploratory data analysis
+│   └── 01c_cleaning_network.ipynb  cleaning + airport edges (RQ2)
 ├── src/
 │   ├── config.py          paths and random seed
 │   ├── profiling.py       runtime and memory measurement
-│   └── data_loading.py    CSV -> Parquet, sample, loader
+│   ├── data_loading.py    CSV -> Parquet, sample, loader
+│   ├── cleaning.py        cleaning rule -> flights_2024_clean.parquet
+│   └── network.py         airport edge table (months 1-6)
 ├── results/
 │   ├── tables/        tables used in the report
 │   ├── figures/       figures used in the report

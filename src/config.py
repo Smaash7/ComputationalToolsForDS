@@ -13,6 +13,8 @@ FIGURES_DIR = RESULTS_DIR / "figures"
 RAW_CSV = Path(os.environ.get("FLIGHTS_CSV", DATA_DIR / "raw" / "flight_data_2024.csv"))
 FLIGHTS_PARQUET = DATA_DIR / "processed" / "flights_2024.parquet"
 SAMPLE_PARQUET = DATA_DIR / "sample" / "flights_2024_sample.parquet"
+CLEAN_PARQUET = DATA_DIR / "processed" / "flights_2024_clean.parquet"
+EDGES_PARQUET = DATA_DIR / "processed" / "airport_edges_m1_6.parquet"
 PERFORMANCE_LOG = RESULTS_DIR / "logs" / "performance_log.csv"
 
 RANDOM_SEED = 42
