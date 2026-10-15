@@ -4,6 +4,7 @@ numpy>=1.26
 matplotlib>=3.8
 scikit-learn>=1.4
 scipy>=1.11
+networkx>=3.2
 
 jupyter
 ipykernel

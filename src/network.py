@@ -1,4 +1,7 @@
 """Airport network for RQ2: one edge per directed route, weighted by number of scheduled flights."""
+import networkx as nx
+import pandas as pd
+
 from src.config import CLEAN_PARQUET, EDGES_PARQUET
 from src.data_loading import load_flights
 from src.profiling import track
@@ -19,3 +22,23 @@ def make_edges_parquet():
         edges.to_parquet(EDGES_PARQUET, index=False)
         stats["edges"] = len(edges)
     return edges
+
+
+def build_graph(edges):
+    """Undirected weighted graph: A->B and B->A are merged, flights summed, distance = 1 / flights."""
+    # Write every route with the alphabetically first airport as "a", so A->B and B->A match
+    undirected = pd.DataFrame()
+    undirected["a"] = edges["origin"].astype(str)
+    undirected["b"] = edges["dest"].astype(str)
+    undirected["flights"] = edges["flights"]
+    swap = undirected["a"] > undirected["b"]
+    undirected.loc[swap, ["a", "b"]] = undirected.loc[swap, ["b", "a"]].to_numpy()
+
+    # Merge A->B and B->A into one undirected edge by adding their flights
+    undirected = undirected.groupby(["a", "b"], as_index=False)["flights"].sum()
+
+    # Build the graph; busy routes get a short distance (used for betweenness)
+    graph = nx.Graph()
+    for row in undirected.itertuples(index=False):
+        graph.add_edge(row.a, row.b, flights=int(row.flights), distance=1 / row.flights)
+    return graph

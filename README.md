@@ -36,13 +36,14 @@ ComputationalTools/
 ├── notebooks/
 │   ├── 01_data_loading.ipynb
 │   ├── 01b_eda.ipynb  exploratory data analysis
-│   └── 01c_cleaning_network.ipynb  cleaning + airport edges (RQ2)
+│   ├── 01c_cleaning_network.ipynb  cleaning + airport edges (RQ2)
+│   └── 03_airport_network.ipynb    RQ2: Louvain, spectral, betweenness
 ├── src/
 │   ├── config.py          paths and random seed
 │   ├── profiling.py       runtime and memory measurement
 │   ├── data_loading.py    CSV -> Parquet, sample, loader
 │   ├── cleaning.py        cleaning rule -> flights_2024_clean.parquet
-│   └── network.py         airport edge table (months 1-6)
+│   └── network.py         airport edge table (months 1-6) and graph
 ├── results/
 │   ├── tables/        tables used in the report
 │   ├── figures/       figures used in the report

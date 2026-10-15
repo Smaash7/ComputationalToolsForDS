@@ -12,3 +12,43 @@ timestamp,step,runtime_s,peak_python_mb,peak_arrow_mb,details
 2026-10-05T20:19:52,load_parquet,0.689,94.7,1035.6,source=flights_2024.parquet; rows=7079081
 2026-10-14T17:48:46,clean_flights,49.526,1317.3,1035.6,rows_in=7079081; rows_out=7079040
 2026-10-14T17:48:46,build_edges,0.538,171.8,1028.8,months=1-6; edges=6545
+2026-10-15T00:02:32,louvain_20_seeds,5.895,1.6,0.4,airports=343
+2026-10-15T00:02:39,betweenness,5.792,0.2,0.4,airports=343
+2026-10-15T00:05:19,louvain_20_seeds,11.998,1.6,0.4,airports=343
+2026-10-15T00:05:40,betweenness,13.2,0.2,0.4,airports=343
+2026-10-15T00:07:33,louvain_20_seeds,8.485,1.6,0.4,airports=343
+2026-10-15T00:07:49,betweenness,9.759,0.3,175.6,airports=343
+2026-10-15T00:11:58,louvain_20_seeds,2.803,1.6,0.3,airports=343
+2026-10-15T00:12:04,betweenness,3.557,0.3,175.6,airports=343
+2026-10-15T00:14:54,louvain_20_seeds,3.175,1.6,0.3,airports=343
+2026-10-15T00:15:00,betweenness,4.173,0.3,175.6,airports=343
+2026-10-15T00:38:29,louvain_20_seeds,3.009,1.6,0.3,airports=343
+2026-10-15T00:38:35,betweenness,3.679,0.3,175.6,airports=343
+2026-10-15T00:45:03,louvain_20_seeds,5.189,1.6,0.3,airports=343
+2026-10-15T00:45:13,betweenness,6.647,0.3,175.6,airports=343
+2026-10-15T00:45:18,betweenness_exact,4.623,0.2,175.6,airports=343
+2026-10-15T00:45:19,betweenness_approx,0.336,0.2,175.6,k=25
+2026-10-15T00:45:20,betweenness_approx,0.701,0.2,175.6,k=50
+2026-10-15T00:45:21,betweenness_approx,1.365,0.2,175.6,k=100
+2026-10-15T00:45:24,betweenness_approx,2.722,0.2,175.6,k=200
+2026-10-15T00:46:10,louvain_20_seeds,5.245,1.6,0.3,airports=343
+2026-10-15T00:46:20,betweenness,6.797,0.3,175.6,airports=343
+2026-10-15T00:46:25,betweenness_exact,4.749,0.2,175.6,airports=343
+2026-10-15T00:46:25,betweenness_approx,0.339,0.2,175.6,k=25
+2026-10-15T00:46:26,betweenness_approx,0.748,0.2,175.6,k=50
+2026-10-15T00:46:28,betweenness_approx,1.46,0.2,175.6,k=100
+2026-10-15T00:46:31,betweenness_approx,2.789,0.2,175.6,k=200
+2026-10-15T00:50:55,louvain_20_seeds,5.8,1.6,0.3,airports=343
+2026-10-15T00:51:06,betweenness,6.932,0.3,175.6,airports=343
+2026-10-15T00:51:11,betweenness_exact,4.646,0.2,175.6,airports=343
+2026-10-15T00:51:11,betweenness_approx,0.393,0.2,175.6,k=25
+2026-10-15T00:51:12,betweenness_approx,0.717,0.2,175.6,k=50
+2026-10-15T00:51:13,betweenness_approx,1.348,0.2,175.6,k=100
+2026-10-15T00:51:16,betweenness_approx,2.669,0.2,175.6,k=200
+2026-10-15T14:28:47,louvain_20_seeds,4.377,1.6,0.3,airports=343
+2026-10-15T14:28:56,betweenness,5.799,0.3,175.6,airports=343
+2026-10-15T14:29:00,betweenness_exact,3.841,0.2,175.6,airports=343
+2026-10-15T14:29:01,betweenness_approx,0.246,0.2,175.6,k=25
+2026-10-15T14:29:01,betweenness_approx,0.594,0.2,175.6,k=50
+2026-10-15T14:29:02,betweenness_approx,1.139,0.2,175.6,k=100
+2026-10-15T14:29:05,betweenness_approx,2.231,0.2,175.6,k=200
