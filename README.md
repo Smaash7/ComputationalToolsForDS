@@ -43,10 +43,13 @@ ComputationalTools/
 │   ├── profiling.py       runtime and memory measurement
 │   ├── data_loading.py    CSV -> Parquet, sample, loader
 │   ├── cleaning.py        cleaning rule -> flights_2024_clean.parquet
-│   └── network.py         airport edge table (months 1-6) and graph
+│   └── network.py         airport edge table (months 1-6) and graph; fit_communities and
+│                          best_louvain give RQ3 one row per airport (community, betweenness)
 ├── results/
-│   ├── tables/        tables used in the report
-│   ├── figures/       figures used in the report
+│   ├── tables/        tables used in the report (e.g. 03_spectral_mainland.csv:
+│   │                  spectral vs Louvain on the mainland airports only)
+│   ├── figures/       figures used in the report (03_community_map.png: airport coordinates
+│   │                  from the airportsdata package, used only for this map, not in any analysis)
 │   └── logs/          performance_log.csv
 ├── requirements.txt
 └── README.md
