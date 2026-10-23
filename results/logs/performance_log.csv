@@ -75,3 +75,10 @@ timestamp,step,runtime_s,peak_python_mb,peak_arrow_mb,details
 2026-10-22T12:01:12,betweenness_approx,0.689,0.2,216.1,k=50
 2026-10-22T12:01:13,betweenness_approx,1.366,0.2,216.1,k=100
 2026-10-22T12:01:16,betweenness_approx,2.658,0.2,216.1,k=200
+2026-10-22T22:46:53,louvain_20_seeds,3.024,1.6,0.3,airports=343
+2026-10-22T22:47:26,betweenness,3.906,0.3,216.1,airports=343
+2026-10-22T22:47:30,betweenness_exact,2.797,0.2,216.1,airports=343
+2026-10-22T22:47:30,betweenness_approx,0.283,0.2,216.1,k=25
+2026-10-22T22:47:30,betweenness_approx,0.405,0.2,216.1,k=50
+2026-10-22T22:47:31,betweenness_approx,0.773,0.2,216.1,k=100
+2026-10-22T22:47:33,betweenness_approx,1.665,0.2,216.1,k=200
