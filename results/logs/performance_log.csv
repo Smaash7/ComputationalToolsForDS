@@ -132,3 +132,17 @@ timestamp,step,runtime_s,peak_python_mb,peak_arrow_mb,details
 2026-10-23T21:00:16,betweenness_approx,0.546,0.2,216.1,k=50
 2026-10-23T21:00:17,betweenness_approx,0.941,0.2,216.1,k=100
 2026-10-23T21:00:19,betweenness_approx,2.103,0.2,216.1,k=200
+2026-10-26T16:27:37,csv_to_parquet,5.914,95.7,46.7,chunksize=500000
+2026-10-26T16:34:35,csv_to_parquet,5.463,95.5,46.7,chunksize=500000
+2026-10-26T16:35:51,csv_to_parquet,60.989,121.0,73.1,chunksize=500000; rows=7079081
+2026-10-26T16:35:52,load_parquet,0.386,95.2,1035.6,source=flights_2024.parquet; rows=7079081
+2026-10-26T16:43:10,load_parquet,0.153,95.2,1035.6,source=flights_2024.parquet; rows=7079081
+2026-10-26T16:44:46,clean_flights,24.302,1317.3,1035.6,rows_in=7079081; rows_out=7079040
+2026-10-26T16:44:46,build_edges,0.233,171.8,1028.8,months=1-6; edges=6545
+2026-10-26T16:45:40,louvain_20_seeds,1.806,1.6,0.3,airports=343
+2026-10-26T16:46:03,betweenness,2.518,0.3,216.1,airports=343
+2026-10-26T16:46:05,betweenness_exact,1.725,0.2,216.1,airports=343
+2026-10-26T16:46:05,betweenness_approx,0.125,0.2,216.1,k=25
+2026-10-26T16:46:05,betweenness_approx,0.248,0.2,216.1,k=50
+2026-10-26T16:46:06,betweenness_approx,0.505,0.2,216.1,k=100
+2026-10-26T16:46:07,betweenness_approx,1.022,0.2,216.1,k=200

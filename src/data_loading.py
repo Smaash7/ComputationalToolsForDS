@@ -66,6 +66,7 @@ def csv_to_parquet(chunksize=500_000, force=False):
     n_rows = 0
     mem_optimized = 0
     writer = None
+    schema = None
     with track("csv_to_parquet", chunksize=chunksize) as stats:
         reader = pd.read_csv(RAW_CSV, usecols=USECOLS, dtype=_read_dtypes(), chunksize=chunksize)
         try:
@@ -74,9 +75,10 @@ def csv_to_parquet(chunksize=500_000, force=False):
                 mem_optimized += chunk.memory_usage(deep=True).sum()
                 if writer is None:
                     table = _to_arrow(chunk)
-                    writer = pq.ParquetWriter(FLIGHTS_PARQUET, table.schema, compression="snappy")
+                    schema = table.schema
+                    writer = pq.ParquetWriter(FLIGHTS_PARQUET, schema, compression="snappy")
                 else:
-                    table = _to_arrow(chunk, schema=writer.schema_arrow)
+                    table = _to_arrow(chunk, schema=schema)
                 writer.write_table(table)
                 n_rows += len(chunk)
                 print(f"  chunk {i}: {n_rows:,} rows written", end="\r")
