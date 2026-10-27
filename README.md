@@ -37,7 +37,12 @@ ComputationalTools/
 │   ├── 01_data_loading.ipynb
 │   ├── 01b_eda.ipynb  exploratory data analysis
 │   ├── 01c_cleaning_network.ipynb  cleaning + airport edges (RQ2)
-│   └── 03_airport_network.ipynb    RQ2: Louvain, spectral, betweenness
+│   ├── 02_route_clustering_Approach_A.ipynb  RQ1: route profiles (months 1-6), K-Means (own + scikit-learn),
+│   │                                         hierarchical, Kruskal-Wallis, delay causes, cluster lookup for RQ3
+│   ├── 02b_route_clusters_interpretation.ipynb  RQ1: cluster names, delay medians/percentiles,
+│   │                                         delay causes per cluster, hierarchical vs K-Means runtime
+│   ├── 03_airport_network.ipynb    RQ2: Louvain, spectral, betweenness
+│   └── 04_predicting_delays.ipynb  RQ3: modeling dataset, baseline and EBM
 ├── src/
 │   ├── config.py          paths and random seed
 │   ├── profiling.py       runtime and memory measurement
@@ -87,6 +92,12 @@ Then select the kernel **"Python (ctds)"** in Jupyter or VS Code.
 
 ## Running the notebooks
 Run the notebooks in order. Notebook 01 skips the conversion if the Parquet files already exist (`FORCE = False`).
+Notebook 01c then creates `data/processed/flights_2024_clean.parquet`, which notebooks 02, 02b, 03 and 04 read.
+Notebook 02b reads the clusters exported by notebook 02, so run 02 first if the clustering changes.
+
+The data files in `data/raw/` and `data/processed/` are not committed (see `.gitignore`); every group member creates
+them locally with notebooks 01 and 01c, which gives identical files. Running 01 and 01c also rewrites some tables in
+`results/` and adds lines to `results/logs/performance_log.csv`: do not commit those changes unless the data step itself changed.
 
 ## Data source
 
