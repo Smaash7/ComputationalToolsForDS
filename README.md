@@ -16,7 +16,7 @@ Methods: Louvain and modularity, spectral clustering, betweenness centrality
 Methods: Explainable Boosting Machine (EBM, outside the course) with the RQ1 and RQ2 outputs as features; rolling monthly evaluation (train on months 1..m, test on month m+1, for m = 6..11); ROC-AUC and PR-AUC reported next to each month's base rate 
 
 ## Decisions
-- Route profiles are built on months 1–6 only, with at least 26 flights per route + airline pair (about one per week).
+- Route profiles are built on months 1–6 only, with at least 30 flights per route + airline pair (about one per week).
 - The airline is not a clustering feature, but it is a feature in the EBM (RQ3).
 - Time-of-day bins: 5–12h, 12–18h, 18–24h, 0–5h.
 - Delays are compared between clusters and communities with medians.
