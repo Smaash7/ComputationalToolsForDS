@@ -37,7 +37,7 @@ ComputationalTools/
 │   ├── 01_data_loading.ipynb
 │   ├── 01b_eda.ipynb  exploratory data analysis
 │   ├── 01c_cleaning_network.ipynb  cleaning + airport edges (RQ2)
-│   ├── 02_route_clustering_Approach_A.ipynb  RQ1: route profiles (months 1-6), K-Means (own + scikit-learn),
+│   ├── 02_route_clustering.ipynb             RQ1: route profiles (months 1-6), K-Means (own + scikit-learn),
 │   │                                         hierarchical, Kruskal-Wallis, delay causes, cluster lookup for RQ3
 │   ├── 02b_route_clusters_interpretation.ipynb  RQ1: cluster names, delay medians/percentiles,
 │   │                                         delay causes per cluster, hierarchical vs K-Means runtime
