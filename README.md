@@ -42,7 +42,8 @@ ComputationalTools/
 │   ├── 02b_route_clusters_interpretation.ipynb  RQ1: cluster names, delay medians/percentiles,
 │   │                                         delay causes per cluster, hierarchical vs K-Means runtime
 │   ├── 03_airport_network.ipynb    RQ2: Louvain, spectral, betweenness
-│   └── 04_predicting_delays.ipynb  RQ3: modeling dataset, baseline and EBM
+│   └── 04_predicting_delays.ipynb  RQ3: model comparisons, evaluation and feature importance
+├── prediction/                RQ3 pipeline, entry point and settings.config
 ├── src/
 │   ├── config.py          paths and random seed
 │   ├── profiling.py       runtime and memory measurement
@@ -94,6 +95,47 @@ Then select the kernel **"Python (ctds)"** in Jupyter or VS Code.
 Run the notebooks in order. Notebook 01 skips the conversion if the Parquet files already exist (`FORCE = False`).
 Notebook 01c then creates `data/processed/flights_2024_clean.parquet`, which notebooks 02, 02b, 03 and 04 read.
 Notebook 02b reads the clusters exported by notebook 02, so run 02 first if the clustering changes.
+
+### RQ3 prediction
+
+After running notebooks 01, 01c, 02 and 03, run notebook `04_predicting_delays.ipynb`, or run
+`python prediction/main.py` from the repository root. Both use `prediction/settings.config`.
+The default fits on up to 200,000 flights per training window and evaluates up to
+100,000 per month. July–August select the model and an F2 threshold subject to at least 50%
+validation specificity (configurable to avoid an all-positive classifier); September–December are
+chronological rolling evaluations. The model search compares expanding windows with the last
+two and four months. All September–December 2024 outcomes have already been inspected during
+earlier iterations, so they are exploratory for this revised model rather than a fresh independent
+test. The command `python prediction/main.py --smoke` runs a much smaller
+end-to-end check and writes to a separate smoke subdirectory.
+
+The pipeline compares EBM, logistic regression and XGBoost candidates, the route-rate baseline,
+and flight/RQ1/RQ2 ablations for both the selected model and the EBM. It writes metrics,
+confusion counts, sampling details, validation rankings, per-feature permutation importance,
+selection settings and the final fitted model to `results/rq3_pipeline_v2/`. The previous run is
+preserved in `results/rq3_pipeline/`. The saved model is the last evaluation fold's model
+(trained through November using its selected window), and requires the same feature engineering
+and historical inputs; it is not a standalone raw-flight predictor. Historical rates use only
+preceding months. Unknown routes with a prior schedule profile are assigned to the nearest
+reconstructed RQ1 cluster; genuinely new routes remain unknown until history is available.
+The fixed January–June structural features are retrospective training representations; the
+original RQ1 profile excludes cancellations, so it is not a strictly real-time network snapshot.
+Use `python -m unittest discover -s tests -p test_prediction.py` for focused checks.
+Resource measurements report elapsed wall time and sampled peak resident memory of the main
+process, not the memory of any child worker processes.
+
+The original fixed-threshold results are the primary July–August-selected evaluation. A
+supplementary rolling threshold uses the previous month's out-of-sample predictions and labels
+to select F2, then evaluates the following month. This policy was added after inspecting the
+previous results: all adaptive months in the revised experiment are exploratory rather than
+independent tests. Run
+`python prediction/main.py --adaptive-only` to recompute just this supplementary analysis.
+
+The revision also tested adding day of month, scheduled arrival hour, scheduled duration,
+airport identifiers, and airport historical delay rates in July/August. The full expanded set
+lowered mean validation PR-AUC from 0.4111 to 0.3978 under the same depth-3/250-tree model;
+the original 13-feature input was retained. A fresh year or later data is needed for an
+independent evaluation after this iteration.
 
 The data files in `data/raw/` and `data/processed/` are not committed (see `.gitignore`); every group member creates
 them locally with notebooks 01 and 01c, which gives identical files. Running 01 and 01c also rewrites some tables in

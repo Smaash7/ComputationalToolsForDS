@@ -1,0 +1,19 @@
+Term,Mean Importance
+sched_hour,0.4176875165382586
+month,0.2649368189554188
+route_past_delay_rate,0.22849472407479612
+cluster_past_delay_rate,0.12766712213880999
+op_unique_carrier,0.10074439020750987
+day_of_week,0.09400911325924992
+sched_hour & op_unique_carrier,0.08194620040728832
+month & sched_hour,0.08149398809113004
+dest_betweenness,0.06789776292650264
+origin_betweenness,0.04820591326429651
+distance,0.0377018428355907
+origin_community,0.026016061880491808
+dest_community,0.02452340393899842
+route_cluster,0.021085945365857756
+sched_hour & origin_community,0.017242576574343246
+route_past_delay_rate & sched_hour,0.0077141536660885945
+sched_hour & cluster_past_delay_rate,0.006826756681039042
+crosses_community,0.006757183679344939

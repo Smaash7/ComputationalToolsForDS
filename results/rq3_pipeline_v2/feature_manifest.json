@@ -1,0 +1,48 @@
+{
+  "flight": [
+    "route_past_delay_rate",
+    "month",
+    "day_of_week",
+    "sched_hour",
+    "op_unique_carrier",
+    "distance"
+  ],
+  "flight_rq1": [
+    "route_past_delay_rate",
+    "month",
+    "day_of_week",
+    "sched_hour",
+    "op_unique_carrier",
+    "distance",
+    "route_cluster",
+    "cluster_past_delay_rate"
+  ],
+  "flight_rq2": [
+    "route_past_delay_rate",
+    "month",
+    "day_of_week",
+    "sched_hour",
+    "op_unique_carrier",
+    "distance",
+    "origin_community",
+    "dest_community",
+    "crosses_community",
+    "origin_betweenness",
+    "dest_betweenness"
+  ],
+  "all": [
+    "route_past_delay_rate",
+    "month",
+    "day_of_week",
+    "sched_hour",
+    "op_unique_carrier",
+    "distance",
+    "route_cluster",
+    "cluster_past_delay_rate",
+    "origin_community",
+    "dest_community",
+    "crosses_community",
+    "origin_betweenness",
+    "dest_betweenness"
+  ]
+}

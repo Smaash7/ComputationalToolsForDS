@@ -15,6 +15,10 @@ data/processed/*
 *.csv
 !results/tables/*.csv
 !results/logs/*.csv
+!results/rq3_pipeline/*.csv
+results/rq3_pipeline/smoke/
+!results/rq3_pipeline_v2/*.csv
+results/rq3_pipeline_v2/smoke/
 *.parquet
 !data/sample/*.parquet
 

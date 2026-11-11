@@ -1,0 +1,19 @@
+candidate,mean_pr_auc,mean_roc_auc
+"xgboost:{""params"": {""max_depth"": 3, ""n_estimators"": 150}, ""train_window"": 2}",0.4169039730877483,0.6833507974887323
+"xgboost:{""params"": {""max_depth"": 5, ""n_estimators"": 150}, ""train_window"": 2}",0.4146099575105855,0.6830819921312822
+"xgboost:{""params"": {""max_depth"": 5, ""n_estimators"": 150}, ""train_window"": 0}",0.41440942542521564,0.6823749257455212
+"xgboost:{""params"": {""max_depth"": 5, ""n_estimators"": 150}, ""train_window"": 4}",0.4142520222856746,0.682253575286816
+"xgboost:{""params"": {""max_depth"": 3, ""n_estimators"": 150}, ""train_window"": 4}",0.4141754369500729,0.6819675515194483
+"ebm:{""params"": {""interactions"": 3, ""learning_rate"": 0.03}, ""train_window"": 2}",0.4133100546475564,0.6805331487356712
+"xgboost:{""params"": {""max_depth"": 3, ""n_estimators"": 150}, ""train_window"": 0}",0.4123093213499619,0.680801537687336
+"ebm:{""params"": {""interactions"": 0, ""learning_rate"": 0.03}, ""train_window"": 2}",0.4111001814916714,0.6781052435444685
+"ebm:{""params"": {""interactions"": 3, ""learning_rate"": 0.03}, ""train_window"": 0}",0.40924080561988707,0.6785048027119982
+"ebm:{""params"": {""interactions"": 3, ""learning_rate"": 0.03}, ""train_window"": 4}",0.40678876897269806,0.6766186038621346
+"logistic:{""params"": {""C"": 0.1}, ""train_window"": 2}",0.40448999805950403,0.6709432420404007
+"logistic:{""params"": {""C"": 1.0}, ""train_window"": 2}",0.404488392962251,0.6709198047459336
+"ebm:{""params"": {""interactions"": 0, ""learning_rate"": 0.03}, ""train_window"": 4}",0.403083588483154,0.6735147003352159
+"ebm:{""params"": {""interactions"": 0, ""learning_rate"": 0.03}, ""train_window"": 0}",0.40183565716993164,0.6730245570709804
+"logistic:{""params"": {""C"": 0.1}, ""train_window"": 0}",0.4000401121982609,0.665757590516154
+"logistic:{""params"": {""C"": 1.0}, ""train_window"": 0}",0.40000737162258715,0.6656889532539869
+"logistic:{""params"": {""C"": 0.1}, ""train_window"": 4}",0.3999626357256688,0.6668841017327287
+"logistic:{""params"": {""C"": 1.0}, ""train_window"": 4}",0.39977495173509936,0.6666587014964086

@@ -1,0 +1,62 @@
+{
+  "model": "xgboost",
+  "parameters": {
+    "max_depth": 3,
+    "n_estimators": 150
+  },
+  "train_window": 2,
+  "threshold": 0.22999999999999998,
+  "baseline_threshold": 0.21999999999999997,
+  "selection_metric": "mean validation PR-AUC",
+  "ebm_reference": {
+    "parameters": {
+      "interactions": 3,
+      "learning_rate": 0.03
+    },
+    "train_window": 2,
+    "threshold": 0.24
+  },
+  "threshold_metric": "pooled validation F2 subject to minimum validation specificity",
+  "settings": {
+    "seed": 42,
+    "train_size": 200000,
+    "evaluation_size": 100000,
+    "importance_size": 10000,
+    "importance_repeats": 3,
+    "prior_delay_rate": 0.2,
+    "validation_months": [
+      7,
+      8
+    ],
+    "test_months": [
+      9,
+      10,
+      11,
+      12
+    ],
+    "threshold_min": 0.05,
+    "threshold_max": 0.6,
+    "threshold_steps": 56,
+    "min_validation_specificity": 0.5,
+    "train_windows": [
+      0,
+      2,
+      4
+    ],
+    "interactions": [
+      0,
+      3
+    ],
+    "learning_rate": 0.03,
+    "logistic_c": [
+      0.1,
+      1.0
+    ],
+    "xgb_depth": [
+      3,
+      5
+    ],
+    "xgb_estimators": 150,
+    "workers": 4
+  }
+}

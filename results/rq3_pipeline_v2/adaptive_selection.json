@@ -1,0 +1,8 @@
+{
+  "method": "maximize F2 subject to minimum specificity on preceding month's out-of-sample predictions",
+  "specificity_minimum": 0.5,
+  "latest_test_month": 12,
+  "latest_threshold": 0.13,
+  "calibration_month": 11,
+  "caveat": "All 2024 test months were inspected during prior iterations; adaptive results are exploratory."
+}

@@ -1,0 +1,79 @@
+{
+  "feature_configuration": "Baseline + RQ1 + RQ2",
+  "features": [
+    "route_past_delay_rate",
+    "month",
+    "day_of_week",
+    "sched_hour",
+    "op_unique_carrier",
+    "distance",
+    "route_cluster",
+    "cluster_past_delay_rate",
+    "origin_community",
+    "dest_community",
+    "crosses_community",
+    "origin_betweenness",
+    "dest_betweenness"
+  ],
+  "configuration": 4,
+  "params": {
+    "random_state": 42,
+    "interactions": 3,
+    "learning_rate": 0.015,
+    "max_leaves": 2,
+    "min_samples_leaf": 4
+  },
+  "threshold": 0.3,
+  "sample_size": 200000,
+  "sampling_seed": 42,
+  "folds": [
+    {
+      "train_months": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "test_month": 10
+    },
+    {
+      "train_months": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "test_month": 11
+    },
+    {
+      "train_months": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "test_month": 12
+    }
+  ],
+  "feature_timing": "Each month's features use only data from earlier months; January uses a fixed prior and unknown structure.",
+  "label_alignment": "Snapshots align clusters and communities to the January reference using shared route and airport memberships.",
+  "selection_limitation": "Configuration and threshold were tuned using fixed January-June structural features, not these chronological features."
+}

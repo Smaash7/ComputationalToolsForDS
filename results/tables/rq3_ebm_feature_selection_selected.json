@@ -1,0 +1,50 @@
+{
+  "estimator": "EBM",
+  "feature_config": "Baseline + standard_flight",
+  "features": [
+    "route_past_delay_rate",
+    "month",
+    "day_of_week",
+    "sched_hour",
+    "op_unique_carrier",
+    "distance"
+  ],
+  "selection_metric": "PR-AUC",
+  "aggregation": "unweighted mean over validation months 7 and 8",
+  "mean_validation_score": 0.4091226292130757,
+  "sample_size": 200000,
+  "random_state": 42,
+  "folds": [
+    {
+      "fold": "July",
+      "train_months": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "validation_month": 7
+    },
+    {
+      "fold": "August",
+      "train_months": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "validation_month": 8
+    }
+  ],
+  "reserved_test_months": [
+    9,
+    10,
+    11,
+    12
+  ]
+}
