@@ -1,18 +1,17 @@
 Term,Mean Importance
-sched_hour,0.4170125471455661
-month,0.26333654586651795
-route_past_delay_rate,0.22815060938474666
-op_unique_carrier,0.09797182082575452
-day_of_week,0.09036121306168976
-cluster_past_delay_rate,0.07785221146209921
-month & sched_hour,0.07692220066177606
-sched_hour & op_unique_carrier,0.055891661908847236
-dest_betweenness,0.046812197042794386
-origin_betweenness,0.03365042237367956
-dest_community,0.029623983548318276
-distance,0.028716764185516202
-origin_community,0.027941025138450353
-sched_hour & cluster_past_delay_rate,0.022908328198325983
-route_cluster,0.02122265765120475
-crosses_community,0.006735093804427492
-route_past_delay_rate & sched_hour,0.00597012533358648
+sched_hour,0.4170438755767882
+month,0.2631119065755649
+route_past_delay_rate,0.22811376764191535
+op_unique_carrier,0.09800862868830608
+day_of_week,0.09038343847469517
+month & sched_hour,0.08045700521535297
+sched_hour & op_unique_carrier,0.07978954862087091
+cluster_past_delay_rate,0.07837214183800312
+dest_betweenness,0.046752016807906964
+origin_betweenness,0.033641298902792806
+dest_community,0.029630643778623452
+distance,0.028791094662314134
+origin_community,0.02838422981758311
+sched_hour & cluster_past_delay_rate,0.023173721308617053
+route_cluster,0.021299875640834368
+crosses_community,0.006542003069335047

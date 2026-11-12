@@ -16,7 +16,7 @@
   ],
   "selection_metric": "Recall",
   "aggregation": "unweighted mean over validation months 7 and 8",
-  "mean_validation_score": 0.405067366682477,
+  "mean_validation_score": 0.08336676405395457,
   "sample_size": 200000,
   "random_state": 42,
   "folds": [
