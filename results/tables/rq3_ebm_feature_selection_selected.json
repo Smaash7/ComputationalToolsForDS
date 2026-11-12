@@ -1,17 +1,22 @@
 {
   "estimator": "EBM",
-  "feature_config": "Baseline + standard_flight",
+  "feature_config": "Baseline + RQ2",
   "features": [
     "route_past_delay_rate",
     "month",
     "day_of_week",
     "sched_hour",
     "op_unique_carrier",
-    "distance"
+    "distance",
+    "origin_community",
+    "dest_community",
+    "crosses_community",
+    "origin_betweenness",
+    "dest_betweenness"
   ],
-  "selection_metric": "PR-AUC",
+  "selection_metric": "Recall",
   "aggregation": "unweighted mean over validation months 7 and 8",
-  "mean_validation_score": 0.4091226292130757,
+  "mean_validation_score": 0.405067366682477,
   "sample_size": 200000,
   "random_state": 42,
   "folds": [
