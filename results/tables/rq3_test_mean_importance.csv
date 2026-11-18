@@ -1,0 +1,11 @@
+Term,Mean Importance
+sched_hour,0.40240872220925233
+month,0.2894989147836285
+route_past_delay_rate,0.22464626608982308
+op_unique_carrier,0.09594676239850573
+day_of_week,0.09207919977332452
+sched_hour & op_unique_carrier,0.08713460806334977
+month & sched_hour,0.08483543021343976
+distance,0.03764545447131113
+month & day_of_week,0.03254188651988093
+route_past_delay_rate & sched_hour,0.014936495985949545

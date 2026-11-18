@@ -7,12 +7,23 @@ from src.data_loading import load_flights
 from src.profiling import track
 
 MAX_SPEED_MPH = 650
+FIT_MONTHS = range(1, 7)  # the route medians use January-June only, like every other fitted step
+
+
+def route_median_duration(df, months=FIT_MONTHS):
+    """Median scheduled duration per route (origin, dest), from `months` only, so no information from the
+    validation and test months is used. Routes that first appear later fall back to their own median."""
+    keys = ["origin", "dest"]
+    fit = df[df["month"].isin(list(months))].groupby(keys, observed=True)["crs_elapsed_time"].median()
+    median = pd.Series(pd.MultiIndex.from_frame(df[keys]).map(fit), index=df.index)
+    fallback = df.groupby(keys, observed=True)["crs_elapsed_time"].transform("median")
+    return median.fillna(fallback)
 
 
 def clean_flights(df):
     """Return (clean df, report). Cancelled and diverted flights are kept and labelled in `status`."""
     dur = df["crs_elapsed_time"]
-    route_median = df.groupby(["origin", "dest"], observed=True)["crs_elapsed_time"].transform("median")
+    route_median = route_median_duration(df)
     rules = {
         "duration missing or <= 0": ~(dur > 0),
         f"speed > {MAX_SPEED_MPH} mph": (dur > 0) & (df["distance"] / (dur / 60) > MAX_SPEED_MPH),

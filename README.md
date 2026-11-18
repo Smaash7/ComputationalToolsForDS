@@ -13,7 +13,7 @@ Methods: Louvain and modularity, spectral clustering, betweenness centrality
 
 
 **RQ3** (extension) | Do the outputs of RQ1 (route cluster) and RQ2 (airport community, betweenness) help predict a 15+ minute arrival delay, compared with a per-route baseline? 
-Methods: Explainable Boosting Machine (EBM, outside the course) with the RQ1 and RQ2 outputs as features; rolling monthly evaluation (train on months 1..m, test on month m+1, for m = 6..11); ROC-AUC and PR-AUC reported next to each month's base rate 
+Methods: Explainable Boosting Machine (EBM, outside the course) with the RQ1 and RQ2 outputs as features, compared with XGBoost; temporal evaluation: features, EBM parameters and threshold are chosen on validation months 7 and 8, then each test month 10, 11 and 12 is predicted by a model trained on all earlier months (expanding window; month 9 is only used for training); ROC-AUC and PR-AUC reported next to each month's base rate 
 
 ## Decisions
 - Route profiles are built on months 1–6 only, with at least 30 flights per route + airline pair (about one per week).
@@ -24,7 +24,7 @@ Methods: Explainable Boosting Machine (EBM, outside the course) with the RQ1 and
 - Flights with an impossible scheduled duration will be removed in the cleaning step.
 - In RQ3, each month's PR-AUC is reported next to its base rate.
 - RQ1 clusters and RQ2 communities are built once on months 1–6 and kept fixed in all folds (labels stay stable). Only the historical delay rates (route and cluster) are recomputed per fold from the months before the test month.
-- Cleaning rule (`src/cleaning.py`, removes 41 flights; cancelled and diverted flights are kept, labelled in `status`): a flight is removed if `crs_elapsed_time` is missing or <= 0, if its implied speed (distance / scheduled duration) is above 650 mph, or if its scheduled duration is less than half or more than twice the median scheduled duration of its route (origin, dest).
+- Cleaning rule (`src/cleaning.py`, removes 41 flights; cancelled and diverted flights are kept, labelled in `status`): a flight is removed if `crs_elapsed_time` is missing or <= 0, if its implied speed (distance / scheduled duration) is above 650 mph, or if its scheduled duration is less than half or more than twice the median scheduled duration of its route (origin, dest). The route medians are computed from months 1–6 only (routes that first appear later use their own median), so the validation and test months are not used; the rule only uses scheduled durations, never delays.
 
 ## Folder structure
 ```
@@ -42,7 +42,9 @@ ComputationalTools/
 │   ├── 02b_route_clusters_interpretation.ipynb  RQ1: cluster names, delay medians/percentiles,
 │   │                                         delay causes per cluster, hierarchical vs K-Means runtime
 │   ├── 03_airport_network.ipynb    RQ2: Louvain, spectral, betweenness
-│   └── 04_predicting_delays.ipynb  RQ3: modeling dataset, baseline and EBM
+│   ├── 04a_picking_model.ipynb     RQ3: why an EBM (EBM vs XGBoost on the same features)
+│   └── 04b_predicting_delays.ipynb RQ3: feature selection and tuning (months 7-8), test on months 10-12,
+│                                   RQ1/RQ2 feature comparison, EBM importances and shape functions
 ├── src/
 │   ├── config.py          paths and random seed
 │   ├── profiling.py       runtime and memory measurement
@@ -92,8 +94,15 @@ Then select the kernel **"Python (ctds)"** in Jupyter or VS Code.
 
 ## Running the notebooks
 Run the notebooks in order. Notebook 01 skips the conversion if the Parquet files already exist (`FORCE = False`).
-Notebook 01c then creates `data/processed/flights_2024_clean.parquet`, which notebooks 02, 02b, 03 and 04 read.
+Notebook 01c then creates `data/processed/flights_2024_clean.parquet`, which notebooks 02, 02b, 03, 04a and 04b read.
 Notebook 02b reads the clusters exported by notebook 02, so run 02 first if the clustering changes.
+Notebooks 04a and 04b read the RQ1 and RQ2 outputs from `results/tables/`, so run 02 and 03 first if those change.
+
+Approximate runtimes with Restart & Run All (full data, laptop with 16 GB RAM and 20 logical cores), about 15 minutes in total:
+01 about 1 minute once the Parquet file exists (the first CSV conversion adds 1–2 minutes), 01b under 1 minute, 01c about 1 minute,
+02 about 2 minutes, 02b about 1 minute, 03 about 1–2 minutes, 04a about 1 minute, 04b about 6–7 minutes.
+Run each notebook with Restart & Run All and close it (shut down its kernel) before opening the next one: an open kernel keeps
+the data in memory, and notebook 04b needs about 3.5 GB of free RAM at its peak.
 
 The data files in `data/raw/` and `data/processed/` are not committed (see `.gitignore`); every group member creates
 them locally with notebooks 01 and 01c, which gives identical files. Running 01 and 01c also rewrites some tables in
