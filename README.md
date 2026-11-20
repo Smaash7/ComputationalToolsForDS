@@ -93,6 +93,7 @@ Then select the kernel **"Python (ctds)"** in Jupyter or VS Code.
 3. Run notebook 01 once. It converts the CSV to Parquet (about 1–2 minutes) and creates the sample.
 
 ## Running the notebooks
+Run the notebooks from the `notebooks/` folder (they import `src/` with `sys.path.append("..")`).
 Run the notebooks in order. Notebook 01 skips the conversion if the Parquet files already exist (`FORCE = False`).
 Notebook 01c then creates `data/processed/flights_2024_clean.parquet`, which notebooks 02, 02b, 03, 04a and 04b read.
 Notebook 02b reads the clusters exported by notebook 02, so run 02 first if the clustering changes.
